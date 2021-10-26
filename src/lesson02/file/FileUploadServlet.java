@@ -23,7 +23,7 @@ public class FileUploadServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
 		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
+		response.setContentType("text/html; charset=UTF-8");	// html로 응답한다
 		PrintWriter out = response.getWriter();
 		out.println("<HTML><HEAD><TITLE>Multipart Test</TITLE></HEAD><BODY>");
 		
@@ -67,11 +67,9 @@ public class FileUploadServlet extends HttpServlet {
 		String contentType = item.getContentType();
 		long fileSize = item.getSize();
 		
-		String uploadedFileName = 
-				System.currentTimeMillis() +
-				fileName.substring(fileName.lastIndexOf("."));
-		File uploadedFile = new File(
-				contextRootPath + "/upload/" + uploadedFileName);
+		String uploadedFileName = System.currentTimeMillis() + fileName.substring(fileName.lastIndexOf(".")); 
+		File uploadedFile = new File(contextRootPath + "/upload/" + uploadedFileName);
+				
 		item.write(uploadedFile);
 		
 		out.println("<P>");
